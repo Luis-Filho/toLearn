@@ -1,6 +1,7 @@
 var altura = 0
 var largura = 0
 var vidas = 1
+var tempo = 10
 
 function ajustaTamanhoPalcoJogo() {
   altura = window.innerHeight
@@ -9,6 +10,17 @@ function ajustaTamanhoPalcoJogo() {
 
 ajustaTamanhoPalcoJogo();
 
+var cronometro = setInterval(function(){
+  tempo -= 1
+
+  if (tempo < 0){
+    clearInterval(cronometro)
+    clearInterval(criaMosquito)
+  }
+  else 
+    document.getElementById('cronometro').innerHTML = tempo  
+},1000)
+
 console.log(altura, largura)
 
 function posicaoRandomica() {
@@ -16,7 +28,7 @@ function posicaoRandomica() {
   if (document.getElementById('mosquito')){
     document.getElementById('mosquito').remove();
     
-    if (vidas > 3){     
+    if (vidas > 3){      
 
       window.location.href = 'fim_de_jogo.html'
     } else 
